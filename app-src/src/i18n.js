@@ -98,6 +98,9 @@ const messages = {
       bottlesCollected: 'Bottiglie raccolte',
       petRecycled: 'KG di PET riciclato',
       co2Saved: 'KG di CO₂ eq risparmiato',
+      tabImpact: 'Impatto',
+      tabActivity: 'Attività',
+      tabRanking: 'Classifica',
     },
     code: {
       title: 'Il mio codice',
@@ -255,6 +258,9 @@ const messages = {
       bottlesCollected: 'Bottles collected',
       petRecycled: 'KG of PET recycled',
       co2Saved: 'KG of CO₂ eq saved',
+      tabImpact: 'Impact',
+      tabActivity: 'Activity',
+      tabRanking: 'Ranking',
     },
     code: {
       title: 'My code',
