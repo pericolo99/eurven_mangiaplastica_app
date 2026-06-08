@@ -1,0 +1,16 @@
+# Dependencies / build artifacts (regenerabili)
+node_modules/
+platforms/
+plugins/
+vendor/
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS / IDE
+.DS_Store
+Thumbs.db
+
+# Output build della nuova UI Vue (verra' rigenerato in www/)
+# www/ resta versionato perche' e' il bundle servito da Cordova

@@ -1,0 +1,152 @@
+<template>
+    <div data-name="tessere" class="page">
+
+
+        <div class="navbar ">
+            <div class="navbar-inner">
+                <div class="left">
+                    <img src="./img/logo-white-sm.png" style="height: 35px; margin-top: 0px" />
+                    <span>{{lang.menu_tessere}}</span>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="fab fab-left-bottom">
+            <a  href="#tab-1" class="tab-link">
+                <i class="icon f7-icons">card_fill</i>
+            </a>
+        </div>
+
+        <div class="fab fab-center-bottom">
+            <a href="#" class="link back">
+                <i class="icon f7-icons">close_round</i>
+            </a>
+        </div>
+
+
+        <div class="fab fab-right-bottom">
+            <a  href="#tab-2" class="tab-link" id="aggiungi-tessera">
+                <i class="icon f7-icons">add_round_fill</i>
+            </a>
+        </div>
+
+            <div class="tabs">
+                <div id="tab-1" class="page-content tab tab-active">
+                    {{#js_if "this.tessere.length >  0"}}
+                    <div class="list media-list">
+                        <ul>{{/js_if}}
+
+                        {{#each tessere}}
+                            <li class="swipeout">
+
+                                <div class="item-content  swipeout-content">
+                                    <div class="item-media"><i class="f7-icons">card-fill</i></div>
+                                    <div class="item-inner">
+                                        <div class="item-title-row">
+                                            <div class="item-title">{{tipo_tessera}}</div>
+                                            <div class="item-after"> <span class="badge">{{numero_conferimenti}}</span></div>
+                                        </div>
+                                        <div class="item-subtitle">{{codice_tessera}}</div>
+                                        <div class="item-footer">{{@root.lang.pagine.tessere_1_5}}</div>
+                                    </div>
+                                </div>
+
+                                <div class="swipeout-actions-right">
+                                    <a href="#" data-ref="{{codice_tessera}}" class="color-red elimina_tessera">
+                                        <i class="f7-icons">trash</i> {{@root.lang.pagine.tessere_1_6}}</a>
+                                </div>
+                            </li>
+
+                        {{else}}
+
+                        <div class="block text-align-center">
+                            <h3>{{lang.pagine.tessere_1_1}}</h3>
+                            <p> <a href="#" class="aggiungi-tessera link" > {{@root.lang.pagine.tessere_1_2}}</a></p>
+                        </div>
+                        {{/each}}
+
+                            {{#js_if "this.tessere.length >  0"}}</ul></div>{{/js_if}}
+
+
+                </div>
+
+                <div id="tab-2" class="page-content tab">
+                    <div class="block">
+                        <p>{{lang.pagine.tessere_2_1}}</p>
+                        <p>{{lang.pagine.tessere_2_2}}</p>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-content" style="margin-top: 10px">
+
+                            <form class="list" id="registra-tessera" style="margin-top: 0px;    margin-bottom: 0px;">
+                                <ul>
+                                    <li>
+                                        <div class="item-content item-input">
+                                            <div class="item-media">{{lang.codice_tessera_label}}</div>
+                                            <div class="item-inner">
+                                                <div class="item-input-wrap">
+                                                    <input type="text" name="codice_tessera" id="codice_tessera" placeholder="{{lang.codice_tessera_placeholder}}" value="">
+                                                    <span class="input-clear-button"></span>
+                                                </div>
+                                            </div>
+                                            <div class="item-after">
+                                                <a href="#" clasS="button link registra-tessera"><i class="f7-icons">camera_fill</i></a>
+                                            </div>
+
+                                        </div>
+                                    </li>
+
+                                    <li>
+
+                                        <!-- Pass parameters as kebab-case data attributes -->
+                                        <a href="#" class="item-link smart-select smart-select-init" data-open-in="page" data-close-on-select="true" data-virtual-list="true" data-page-back-link-text="{{lang.button_annulla}}">
+                                            <!-- select -->
+                                            <select name="tipo_tessera" id="tipo_tessera">
+                                                <option value="">{{lang.pagine.tessere_2_3}} </option>
+                                                {{#each elenco_tessere}}
+                                                <option value="{{nome}}">{{nome}}</option>
+                                                {{/each}}
+                                            </select>
+                                            <div class="item-content">
+                                                <div class="item-inner">
+                                                    <div class="item-title">{{lang.pagine.tessere_2_4}}</div>
+                                                    <div class="item-after"></div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+
+                                    <li class="" style="padding: 3vw">
+
+
+                                        <a href="#" class="button button-round button-fill salva-tessera" >{{lang.button_aggiungi}}</a>
+
+                                    </li>
+                                </ul>
+
+                            </form>
+
+
+
+                        </div>
+
+                        <div class="card-footer">
+                            <div class="block text-align-center">
+                                <p>
+                                <h3>{{lang.pagine.tessere_2_5}}</h3>
+                                {{lang.pagine.tessere_2_6}}
+
+
+                                </p>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+</template>

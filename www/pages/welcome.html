@@ -1,0 +1,196 @@
+<template>
+    <div data-name="welcome" class="page">
+        <div class="navbar ">
+            <div class="navbar-inner">
+                <div class="left">
+                    <img src="./img/logo-white-sm.png" style="height: 35px; margin-top: 0px; margin-left: 5px" />
+                    <span style="margin-left: 10px">Mangiaplastica</span>
+                </div>
+                <div class="right">
+                    <a class="panel-open margin-right-half" href="/panel-component/" data-panel="right">
+                        <i class="f7-icons">bars</i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-content">
+
+            <div data-pagination='{"el": ".swiper-pagination"}' class="swiper-container swiper-init"  style="height: 90vh">
+
+                <div class="swiper-pagination"></div>
+                <div class="swiper-wrapper" >
+                    <div class="swiper-slide">
+
+                        <div class="block no-margin no-padding">
+                            <img src="./img/welcome_1.png" class="top_image button-round" >
+                        </div>
+                        <div class="block margin-top margin-bottom-half">
+                            <h2 class="text-align-center">{{lang.pagine.ciao}} {{utente.nome}} <small>{{utente.cognome}}</small></h2>
+
+                        </div>
+
+
+                        <h2 class="text-align-center">{{lang.pagine.welcome_1_1}}</h2>
+                        <h2 class="text-align-center" style="font-size: 3.5em; line-height: 20px">{{punti}}</h2>
+
+
+
+                        <h2 class="text-align-center">Bottiglie Conferite</h2>
+                        <h2 class="text-align-center" style="font-size: 3em; line-height: 18px">{{conferimenti}}</h2>
+
+                        <div class="block">
+                          <p class="row">
+                            <div clasS="col"></div>
+                              <a href="/macchine/" class="col button button-large">{{lang.pagine.welcome_1_2}}</a>
+
+                                <div clasS="col"></div>
+                            </p>
+
+                            {{#if progetti }}
+                            <p class="row">
+                            <div clasS="col"></div>
+                            <a href="/progetti/" class="col button button-large">Progetti scuola</a>
+                            <div clasS="col"></div>
+                            </p>
+                            {{/if }}
+
+                          </div>
+                    </div>
+                    <div class="swiper-slide">
+
+
+                        <div class="block no-margin no-padding">
+                            <img src="./img/welcome_3.png" class="top_image" >
+                        </div>
+
+                        <div class="block margin-top margin-bottom-half">
+                            <h2 class="text-align-center">{{@root.lang.pagine.welcome_3_1}}</h2>
+
+                        </div>
+
+
+                        <div class="list">
+                            <ul>
+
+                                {{#each ultimi}}
+                                <li>
+                                    <div class="item-content">
+                                        <div class="item-inner">
+                                            <div class="item-title">
+                                                <div class="item-header">{{data_conferimento}}</div>
+                                                {{@root.lang.pagine.welcome_3_2}} {{macchina_desc}} </div>
+                                            <div class="item-after"> {{quantita}}</div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                {{else}}
+                                <li>
+
+                                    <div class="item-content">
+                                        <div class="item-inner">
+                                            <div class="item-title text-align-center" style="width: 100%;">
+                                                {{@root.lang.pagine.welcome_3_3}} </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                {{/each}}
+
+                                <li>
+                                    <a href="/storico" class="item-content">
+                                        <div class="item-inner">
+                                            <div class="item-title text-align-center" style="width: 100%;">
+                                                Più dettagli</div>
+                                        </div>
+                                    </a>
+                                </li>
+
+
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+
+
+                        <div class="block no-margin no-padding">
+                            <img src="./img/welcome_2.png" class="top_image" >
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col text-align-center">
+                                <div style="background-color: rgba(12, 130, 223, 0.5); border-radius: 50%; width: 100px; height: 100px; margin: auto">
+                                    <span class="text-align-center no-padding padding-top margin-half" style="font-size: 1.5em;line-height: 1em;">{{elaborazioni.bottiglie}}</span>
+                                    <span class="text-align-center" style="font-size: 1em;margin: 5px !important;">Bottiglie<br/>Raccolte</span>
+
+                                </div>
+                            </div>
+                            <div class="col text-align-center">
+                                <div style="background-color: rgba(12, 130, 223, 0.5); border-radius: 50%; width: 100px; height: 100px; margin: auto">
+                                    <span class="text-align-center no-padding padding-top margin-half" style="font-size: 1.5em;line-height: 1em;">{{elaborazioni.pet}}</span>
+                                    <span class="text-align-center" style="font-size: 1em;margin: 5px !important;">KG di PET<br/>Riciclato</span>
+                                </div>
+                            </div>
+                            <div class="col text-align-center">
+                                <div style="background-color: rgba(12, 130, 223, 0.5); border-radius: 50%; width: 100px; height: 100px; margin: auto">
+                                    <span class="text-align-center no-padding padding-top margin-half" style="font-size: 1.5em;line-height: 1em;">{{elaborazioni.co}}</span>
+                                    <span class="text-align-center" style="font-size: 1em;margin: 5px !important;">KG di CO<sub>2</sub> eq<br/>Risparmiato</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="block margin-top margin-bottom-half">
+                            <h2 class="text-align-center">{{lang.pagine.welcome_2_1}}</h2>
+
+                        </div>
+
+                        <div class="list ">
+                            <ul>
+                                {{#each classifica}}
+                                <li>
+                                    <div class="item-content">
+                                        <div class="item-media"><i class="f7-icons">star_fill</i></div>
+                                        <div class="item-inner">
+                                            <div class="item-title">{{nominativo}}</div>
+                                            <div class="item-after">{{punti}}</div>
+                                        </div>
+                                    </div>
+                                </li>
+                                {{else}}
+                                <li>
+                                    <div class="item-content">
+                                        <div class="item-inner">
+                                            <div class="item-title text-align-center" style="width: 100%;">
+                                                {{lang.pagine.welcome_2_2}} </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                {{/each}}
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+
+        <div class="fab fab-right-bottom">
+            <a href="#" class="refresh">
+                <i class="icon f7-icons">refresh</i>
+            </a>
+        </div>
+
+        <div class="fab fab-left-bottom">
+            <a href="/codice">
+                <i class="icon f7-icons">barcode</i>
+            </a>
+        </div>
+
+    </div>
+</template>

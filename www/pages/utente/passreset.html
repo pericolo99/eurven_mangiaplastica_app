@@ -1,0 +1,60 @@
+<template>
+    <div data-name="reset" class="page bg-color-reduxo">
+
+        <div class="fab fab-center-bottom">
+            <a href="#" class="link back color-white text-color-reduxo">
+                <i class="icon f7-icons">close_round</i>
+            </a>
+        </div>
+
+        <div class="page-content">
+            <div class="block">
+
+                <img src="./img/logo_wh.png" style="width: 50vw; margin: auto; display: block;">
+
+            </div>
+
+            <form class="list" id="reset-utente">
+                <ul>
+                    <li>
+                        <div class="item-content item-inputbg-color-reduxo text-color-reduxo">
+                            <div class="item-media"><i class="f7-icons">person_round</i></div>
+                            <div class="item-inner">
+                                <div class="item-input-wrap bg-color-reduxo text-color-reduxo">
+                                    <input type="number" name="input1" id="input1" placeholder="{{lang.cellulare_placeholder}}" class="text-color-reduxo">
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="item-content item-input bg-color-reduxo text-color-reduxo">
+
+                        <div class="item-media"><i class="f7-icons">email</i></div>
+
+                        <div class="item-inner">
+                            <div class="item-input-wrap  bg-color-reduxo text-color-reduxo">
+                                <input type="email" id="input2" name="input2" placeholder="{{lang.email_placeholder}}" class="text-color-reduxo">
+                            </div>
+                        </div>
+
+                    </li>
+                </ul>
+            </form>
+
+
+            <div class="block">
+                <p class="row">
+                <div class="col-10"></div>
+                <div class="col-80">
+                    <a href="#" id="recupera" class="button button-round button-large button-fill">
+                        {{lang.button_aggiorna_password}}
+                    </a>
+                </div>
+                <div class="col-10"></div>
+                </p>
+
+
+            </div>
+        </div>
+
+    </div>
+</template>

@@ -1,0 +1,45 @@
+<template>
+    <div data-name="storico" class="page">
+
+        <div class="navbar ">
+            <div class="navbar-inner">
+                <div class="left">
+                    <img src="./img/logo-white-sm.png" style="height: 35px; margin-top: 0px" />
+                    <span>I miei Green Points</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="fab fab-center-bottom">
+            <a href="#" class="link back">
+                <i class="icon f7-icons">close_round</i>
+            </a>
+        </div>
+
+
+        <div class="page-content">
+        <div class="block no-margin no-padding">
+            <img src="./img/welcome_3.png" class="top_image" >
+        </div>
+
+            {{contenuto}}
+
+
+            <div class="timeline" style="height: 45vh; overflow-y: auto">
+                    {{#each ultimi}}
+                <div class="timeline-item">
+                    <div class="timeline-item-date">{{quantita}}</div>
+                    <div class="timeline-item-divider {{color_class}}"></div>
+                    <div class="timeline-item-content">
+                        <div class="timeline-item-time">{{data_conferimento}}</div>
+                        <div class="timeline-item-subtitle">{{macchina_desc}}</div>
+                    </div>
+                </div>
+                {{/each}}
+            </div>
+
+
+        </div>
+
+    </div>
+</template>

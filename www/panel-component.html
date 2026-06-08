@@ -1,0 +1,85 @@
+<template>
+        <div class="panel panel-right">
+            <div class="view">
+                <div class="page">
+
+                    <div class="block">
+                        <img src="./img/eurven.jpg" style="width: 80%; margin: auto; display: block;"/>
+                    </div>
+
+        <div class="list">
+
+            <ul>
+                <li>
+                    <a href="/profilo" class="item-link item-content panel-close">
+                        <div class="item-inner">
+                            <div class="item-title">{{context.lang.menu_profilo}}</div>
+                        </div>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/storico" class="item-link item-content panel-close">
+                        <div class="item-inner">
+                            <div class="item-title">{{context.lang.menu_green_points}}</div>
+                        </div>
+                    </a>
+                </li>
+                <!--
+                <li>
+                    <a href="/tessere" class="item-link item-content panel-close">
+                        <div class="item-inner">
+                            <div class="item-title">{{context.lang.menu_tessere}}</div>
+                        </div>
+                    </a>
+                </li>
+                -->
+
+
+
+                <li>
+                    <a href="/contatti" class="item-link item-content panel-close">
+                        <div class="item-inner">
+                            <div class="item-title">{{context.lang.menu_informazioni}}</div>
+                        </div>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#" class="item-link item-content select-lang  panel-close">
+                        <div class="item-inner">
+                            <div class="item-title">{{context.lang.menu_lingua}}</div>
+                        </div>
+                    </a>
+                </li>
+
+
+                <li class="item-divider"></li>
+                <li>
+
+                    <a href="#" class="item-link item-content panel-close logout">
+                        <div class="item-inner">
+                        <div class="item-title">{{context.lang.menu_disconnetti}}</div>
+                    </div>
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+                </div>
+            </div>
+    </div>
+</template>
+<script>
+
+    return {
+          data: function() {
+                var self = this;
+                var app = self.$app;
+                var x = {context:   app.loadContext() };
+                console.log(x);
+             return x;
+            }
+
+    }
+</script>
