@@ -3,6 +3,7 @@ import { ref, onMounted } from 'vue'
 import AppShell from '@/components/AppShell.vue'
 import Icon from '@/components/Icon.vue'
 import EmptyState from '@/components/EmptyState.vue'
+import Skeleton from '@/components/Skeleton.vue'
 import { t } from '@/i18n'
 import { api } from '@/api/client'
 import { EP } from '@/api/endpoints'
@@ -42,9 +43,7 @@ onMounted(load)
 
 <template>
   <AppShell :title="t('projects.title')" back>
-    <div v-if="loading" class="card grid place-items-center py-12">
-      <span class="h-8 w-8 animate-spin rounded-full border-[3px] border-brand-100 border-t-brand"></span>
-    </div>
+    <Skeleton v-if="loading" :rows="2" variant="cards" />
 
     <!-- Adesione corrente -->
     <template v-else-if="data && data.allow_adesione === false && data.adesione">

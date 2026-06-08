@@ -1,10 +1,13 @@
 <script setup>
 import Icon from './Icon.vue'
+import CountUp from './CountUp.vue'
 defineProps({
   icon: { type: String, default: 'recycle' },
   value: { type: [String, Number], default: '0' },
   label: { type: String, default: '' },
   tone: { type: String, default: 'accent' }, // accent | brand | eco
+  animate: { type: Boolean, default: false },
+  decimals: { type: Number, default: null },
 })
 const tones = {
   accent: 'from-accent-400/15 to-accent/10 text-accent-700',
@@ -21,7 +24,10 @@ const tones = {
     >
       <Icon :name="icon" :size="22" />
     </div>
-    <div class="text-xl font-extrabold leading-none text-ink">{{ value }}</div>
+    <div class="text-xl font-extrabold leading-none text-ink">
+      <CountUp v-if="animate" :value="value" :decimals="decimals" />
+      <template v-else>{{ value }}</template>
+    </div>
     <div class="text-[0.7rem] font-medium leading-tight text-muted">{{ label }}</div>
   </div>
 </template>

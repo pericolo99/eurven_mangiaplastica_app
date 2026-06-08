@@ -102,6 +102,11 @@ const messages = {
       tabActivity: 'Attività',
       tabRanking: 'Classifica',
     },
+    history: {
+      tabDeposits: 'Conferimenti',
+      tabRewards: 'Premi',
+      noRewards: 'Nessun premio riscattato',
+    },
     code: {
       title: 'Il mio codice',
       subtitle: 'Il tuo codice personale',
@@ -112,6 +117,8 @@ const messages = {
       empty: 'Non sono presenti tessere',
       addCta: 'Aggiungi una tessera o una applicazione',
       add: 'Aggiungi tessera',
+      tabMine: 'Le mie',
+      tabAdd: 'Aggiungi',
       codeLabel: 'Codice tessera',
       codePh: 'Il tuo codice tessera',
       type: 'Tipo',
@@ -262,6 +269,11 @@ const messages = {
       tabActivity: 'Activity',
       tabRanking: 'Ranking',
     },
+    history: {
+      tabDeposits: 'Deposits',
+      tabRewards: 'Rewards',
+      noRewards: 'No rewards redeemed',
+    },
     code: {
       title: 'My code',
       subtitle: 'Your personal code',
@@ -272,6 +284,8 @@ const messages = {
       empty: 'No cards yet',
       addCta: 'Add a card or application',
       add: 'Add card',
+      tabMine: 'My cards',
+      tabAdd: 'Add',
       codeLabel: 'Card code',
       codePh: 'Your card code',
       type: 'Type',

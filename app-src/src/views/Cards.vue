@@ -1,6 +1,7 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import AppShell from '@/components/AppShell.vue'
+import SegmentedTabs from '@/components/SegmentedTabs.vue'
 import Icon from '@/components/Icon.vue'
 import EmptyState from '@/components/EmptyState.vue'
 import { t } from '@/i18n'
@@ -10,12 +11,16 @@ import { EP } from '@/api/endpoints'
 import { ui } from '@/stores/ui'
 import { scanBarcode } from '@/native'
 
-const showAdd = ref(false)
+const tab = ref('mine')
 const codice = ref('')
 const tipo = ref('')
 
+const tabs = [
+  { key: 'mine', label: t('cards.tabMine'), icon: 'card' },
+  { key: 'add', label: t('cards.tabAdd'), icon: 'plus' },
+]
+
 onMounted(async () => {
-  // Aggiorna l'elenco dei tipi tessera disponibili
   try {
     await api(EP.elencoTessere, {})
   } catch (e) {
@@ -35,9 +40,9 @@ async function save() {
   try {
     await api(EP.registraTessera, { codice_tessera: codice.value, tipo_tessera: tipo.value })
     ui.success(t('common.save'))
-    showAdd.value = false
     codice.value = ''
     tipo.value = ''
+    tab.value = 'mine'
   } catch (e) {
     ui.error(e.message)
   } finally {
@@ -61,51 +66,39 @@ async function remove(card) {
 
 <template>
   <AppShell :title="t('cards.title')">
-    <button class="btn-soft btn-block mb-4" @click="showAdd = true">
-      <Icon name="plus" :size="20" /> {{ t('cards.add') }}
-    </button>
+    <SegmentedTabs v-model="tab" :tabs="tabs" class="mb-4" />
 
-    <ul v-if="session.tessere?.length" class="space-y-3">
-      <li
-        v-for="(c, i) in session.tessere"
-        :key="i"
-        class="card flex items-center gap-3 p-4"
-      >
-        <span class="grid h-12 w-12 place-items-center rounded-2xl bg-brand-gradient text-white">
-          <Icon name="card" :size="24" />
-        </span>
-        <div class="min-w-0 flex-1">
-          <p class="truncate font-bold text-ink">{{ c.tipo_tessera }}</p>
-          <p class="truncate text-sm text-muted">{{ c.codice_tessera }}</p>
+    <Transition name="tab" mode="out-in">
+      <!-- Le mie tessere -->
+      <div v-if="tab === 'mine'" key="mine">
+        <ul v-if="session.tessere?.length" class="space-y-3">
+          <li v-for="(c, i) in session.tessere" :key="i" class="card flex items-center gap-3 p-4">
+            <span class="grid h-12 w-12 place-items-center rounded-2xl bg-brand-gradient text-white">
+              <Icon name="card" :size="24" />
+            </span>
+            <div class="min-w-0 flex-1">
+              <p class="truncate font-bold text-ink">{{ c.tipo_tessera }}</p>
+              <p class="truncate text-sm text-muted">{{ c.codice_tessera }}</p>
+            </div>
+            <span v-if="c.numero_conferimenti" class="chip bg-eco-500/10 text-eco-600">{{ c.numero_conferimenti }}</span>
+            <button class="grid h-9 w-9 place-items-center rounded-xl bg-red-50 text-red-500 active:scale-90" @click="remove(c)">
+              <Icon name="trash" :size="18" />
+            </button>
+          </li>
+        </ul>
+
+        <div v-else class="card">
+          <EmptyState icon="card" :title="t('cards.empty')" :subtitle="t('cards.addCta')">
+            <button class="btn-primary mt-2" @click="tab = 'add'">
+              <Icon name="plus" :size="18" /> {{ t('cards.add') }}
+            </button>
+          </EmptyState>
         </div>
-        <span v-if="c.numero_conferimenti" class="chip bg-eco-500/10 text-eco-600">{{ c.numero_conferimenti }}</span>
-        <button class="grid h-9 w-9 place-items-center rounded-xl bg-red-50 text-red-500 active:scale-90" @click="remove(c)">
-          <Icon name="trash" :size="18" />
-        </button>
-      </li>
-    </ul>
+      </div>
 
-    <div v-else class="card mt-2">
-      <EmptyState icon="card" :title="t('cards.empty')" :subtitle="t('cards.addCta')">
-        <button class="btn-primary mt-2" @click="showAdd = true">
-          <Icon name="plus" :size="18" /> {{ t('cards.add') }}
-        </button>
-      </EmptyState>
-    </div>
-
-    <!-- Bottom sheet aggiunta -->
-    <Teleport to="body">
-      <Transition name="sheet-fade">
-        <div v-if="showAdd" class="fixed inset-0 z-[75] bg-ink/40 backdrop-blur-sm" @click="showAdd = false" />
-      </Transition>
-      <Transition name="sheet">
-        <div
-          v-if="showAdd"
-          class="fixed inset-x-0 bottom-0 z-[76] mx-auto max-w-md rounded-t-[2rem] bg-white p-6 shadow-card"
-          :style="{ paddingBottom: 'calc(var(--safe-bottom) + 1.5rem)' }"
-        >
-          <div class="mx-auto mb-4 h-1.5 w-12 rounded-full bg-slate-200"></div>
-          <h2 class="mb-1 text-lg font-extrabold text-ink">{{ t('cards.add') }}</h2>
+      <!-- Aggiungi tessera -->
+      <div v-else key="add">
+        <div class="card p-5">
           <p class="mb-4 text-sm text-muted">{{ t('cards.info1') }}</p>
 
           <label class="field-label">{{ t('cards.codeLabel') }}</label>
@@ -124,18 +117,19 @@ async function remove(card) {
 
           <button class="btn-primary btn-block" @click="save">{{ t('common.add') }}</button>
         </div>
-      </Transition>
-    </Teleport>
+
+        <div class="mt-4 flex items-start gap-3 rounded-2xl bg-amber-50 p-4 text-sm text-amber-700">
+          <Icon name="info" :size="20" class="mt-0.5 shrink-0" />
+          <p><b>{{ t('cards.warning') }}.</b> {{ t('cards.warningText') }}</p>
+        </div>
+      </div>
+    </Transition>
   </AppShell>
 </template>
 
 <style scoped>
-.sheet-fade-enter-active,
-.sheet-fade-leave-active { transition: opacity 0.25s ease; }
-.sheet-fade-enter-from,
-.sheet-fade-leave-to { opacity: 0; }
-.sheet-enter-active,
-.sheet-leave-active { transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
-.sheet-enter-from,
-.sheet-leave-to { transform: translateY(100%); }
+.tab-enter-active,
+.tab-leave-active { transition: opacity 0.2s ease, transform 0.2s ease; }
+.tab-enter-from { opacity: 0; transform: translateY(8px); }
+.tab-leave-to { opacity: 0; transform: translateY(-6px); }
 </style>

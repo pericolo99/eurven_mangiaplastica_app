@@ -3,6 +3,7 @@ import { ref, onMounted, shallowRef } from 'vue'
 import AppShell from '@/components/AppShell.vue'
 import Icon from '@/components/Icon.vue'
 import EmptyState from '@/components/EmptyState.vue'
+import Skeleton from '@/components/Skeleton.vue'
 import { t } from '@/i18n'
 import { api } from '@/api/client'
 import { EP } from '@/api/endpoints'
@@ -98,10 +99,13 @@ onMounted(load)
       </div>
     </div>
 
-    <div v-if="loading" class="card grid place-items-center py-10">
-      <span class="h-8 w-8 animate-spin rounded-full border-[3px] border-brand-100 border-t-brand"></span>
-      <p class="mt-3 text-sm text-muted">{{ t('machines.locating') }}</p>
-    </div>
+    <template v-if="loading">
+      <p class="mb-3 flex items-center justify-center gap-2 text-sm text-muted">
+        <span class="h-4 w-4 animate-spin rounded-full border-2 border-brand-100 border-t-brand"></span>
+        {{ t('machines.locating') }}
+      </p>
+      <Skeleton :rows="4" variant="list" />
+    </template>
 
     <ul v-else-if="machines.length" class="space-y-3">
       <li v-for="(m, i) in machines" :key="m.codice_macchina || i" class="card flex items-center gap-3 p-4">

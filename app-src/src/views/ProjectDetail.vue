@@ -2,6 +2,7 @@
 import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import AppShell from '@/components/AppShell.vue'
+import Skeleton from '@/components/Skeleton.vue'
 import { t } from '@/i18n'
 import { api } from '@/api/client'
 import { EP } from '@/api/endpoints'
@@ -50,9 +51,7 @@ async function submit() {
 
 <template>
   <AppShell :title="t('projects.title')" back>
-    <div v-if="loading" class="card grid place-items-center py-12">
-      <span class="h-8 w-8 animate-spin rounded-full border-[3px] border-brand-100 border-t-brand"></span>
-    </div>
+    <Skeleton v-if="loading" :rows="1" variant="cards" />
 
     <article v-else-if="progetto" class="card overflow-hidden">
       <div class="bg-brand-gradient px-5 py-5 text-white">
