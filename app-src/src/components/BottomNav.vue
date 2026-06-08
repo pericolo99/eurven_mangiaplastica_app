@@ -11,7 +11,7 @@ const left = [
   { name: 'machines', to: { name: 'machines' }, icon: 'pin', label: 'nav.machines' },
 ]
 const right = [
-  { name: 'cards', to: { name: 'cards' }, icon: 'card', label: 'nav.cards' },
+  { name: 'history', to: { name: 'history' }, icon: 'trophy', label: 'nav.historyTab' },
   { name: 'profile', to: { name: 'profile' }, icon: 'user', label: 'nav.profile' },
 ]
 </script>

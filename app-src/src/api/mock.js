@@ -12,6 +12,12 @@ const barcode =
       `</svg>`
   )
 
+// Flag "progetti attivi" pilotabile dal toggle di sviluppo (default: attivo).
+function mockProgettiAttivi() {
+  const v = localStorage.getItem('mock_progetti')
+  return v === null ? true : v === 'true'
+}
+
 // Stato mutabile della sessione demo
 const state = {
   tessere: [
@@ -103,7 +109,7 @@ function loginResponse() {
       elaborazioni: { bottiglie: 312, pet: '5.8', co: '31.20' },
       punti: 1240,
       classifica,
-      progetti: true,
+      progetti: mockProgettiAttivi(),
     },
   }
 }

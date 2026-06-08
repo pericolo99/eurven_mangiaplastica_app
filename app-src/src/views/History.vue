@@ -39,7 +39,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <AppShell :title="t('nav.history')" back>
+  <AppShell :title="t('nav.history')">
     <SegmentedTabs v-model="tab" :tabs="tabs" class="mb-4" />
 
     <Skeleton v-if="loading" :rows="5" variant="list" />
