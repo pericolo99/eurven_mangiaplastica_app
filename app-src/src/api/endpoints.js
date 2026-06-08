@@ -1,5 +1,7 @@
 // Base API v3 (JSON pulito). La v2 resta attiva per le app non aggiornate.
-export const API_BASE = 'https://mangiaplastica.eurven.online/v3/'
+// Sovrascrivibile in locale con VITE_API_BASE (es. staging o backend locale).
+export const API_BASE =
+  import.meta.env.VITE_API_BASE || 'https://mangiaplastica.eurven.online/v3/'
 
 export const EP = {
   login: 'login',

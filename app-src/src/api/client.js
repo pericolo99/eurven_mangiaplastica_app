@@ -23,6 +23,18 @@ export class ApiError extends Error {
  * @param {object} opts      { absorb?: boolean } se true assorbe data.keys nello store
  */
 export async function api(endpoint, data = {}, opts = {}) {
+  // Modalita' mock per il test locale (solo in dev, attiva con VITE_MOCK=1).
+  // In build di produzione import.meta.env.DEV e' false -> ramo eliminato.
+  if (import.meta.env.DEV && import.meta.env.VITE_MOCK === '1') {
+    const { mockApi } = await import('./mock')
+    const json = await mockApi(endpoint, data)
+    if (json && json.hasError) {
+      throw new ApiError(json.statusMessage || json.messaggio || t('common.genericError'), 200, json)
+    }
+    if (opts.absorb !== false) session.absorb(json)
+    return json
+  }
+
   const token = session.token
   const headers = {
     'Content-Type': 'application/json',
