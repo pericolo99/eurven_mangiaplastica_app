@@ -25,7 +25,6 @@ async function logout() {
 const links = [
   { name: 'projects', icon: 'leaf', label: 'nav.projects', requiresProjects: true },
   { name: 'info', icon: 'info', label: 'nav.info' },
-  { name: 'contacts', icon: 'phone', label: 'nav.contacts' },
 ]
 </script>
 
