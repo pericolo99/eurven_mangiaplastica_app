@@ -41,6 +41,30 @@ import Icon from './Icon.vue'
     </div>
   </Transition>
 
+  <!-- Alert informativo -->
+  <Transition name="fade">
+    <div
+      v-if="ui.alertState"
+      class="fixed inset-0 z-[90] grid place-items-center bg-ink/40 p-6 backdrop-blur-sm"
+      @click.self="ui._closeAlert()"
+    >
+      <div class="w-full max-w-sm animate-pop-in rounded-3xl bg-white p-6 shadow-card">
+        <div class="mx-auto mb-3 grid h-12 w-12 place-items-center rounded-2xl bg-brand-50 text-brand">
+          <Icon name="info" :size="26" />
+        </div>
+        <p v-if="ui.alertState.title" class="text-center text-base font-extrabold text-ink">
+          {{ ui.alertState.title }}
+        </p>
+        <p class="mt-1 text-center text-sm leading-relaxed text-muted">
+          {{ ui.alertState.message }}
+        </p>
+        <button class="btn-primary btn-block mt-6" @click="ui._closeAlert()">
+          {{ t('common.close') }}
+        </button>
+      </div>
+    </div>
+  </Transition>
+
   <!-- Toasts -->
   <div class="pointer-events-none fixed inset-x-0 top-0 z-[100] flex flex-col items-center gap-2 px-4"
        :style="{ paddingTop: 'calc(var(--safe-top) + 12px)' }">

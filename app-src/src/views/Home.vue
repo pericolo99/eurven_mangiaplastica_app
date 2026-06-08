@@ -22,6 +22,10 @@ const tabs = [
   { key: 'ranking', label: t('home.tabRanking'), icon: 'trophy' },
 ]
 
+function showProjectsInfo() {
+  ui.alert(t('projects.inactiveText'), t('projects.inactiveTitle'))
+}
+
 async function refresh() {
   refreshing.value = true
   try {
@@ -71,15 +75,27 @@ async function refresh() {
       </section>
 
       <!-- Azioni rapide -->
-      <section class="mt-4 grid gap-3" :class="session.progetti ? 'grid-cols-2' : 'grid-cols-1'">
+      <section class="mt-4 grid grid-cols-2 gap-3">
         <RouterLink :to="{ name: 'machines' }" class="card flex items-center gap-3 p-4 active:scale-[0.98]">
           <span class="grid h-11 w-11 place-items-center rounded-2xl bg-accent-50 text-accent-600"><Icon name="pin" :size="22" /></span>
           <span class="text-sm font-bold leading-tight text-ink">{{ t('home.where') }}</span>
         </RouterLink>
+
+        <!-- Progetti scuola: attivo -> link; non attivo -> grigio con spiegazione -->
         <RouterLink v-if="session.progetti" :to="{ name: 'projects' }" class="card flex items-center gap-3 p-4 active:scale-[0.98]">
           <span class="grid h-11 w-11 place-items-center rounded-2xl bg-eco-500/10 text-eco-600"><Icon name="leaf" :size="22" /></span>
           <span class="text-sm font-bold leading-tight text-ink">{{ t('home.schoolProjects') }}</span>
         </RouterLink>
+        <button
+          v-else
+          type="button"
+          class="card flex items-center gap-3 p-4 opacity-75 active:scale-[0.98]"
+          @click="showProjectsInfo"
+        >
+          <span class="grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-slate-100 text-slate-400"><Icon name="leaf" :size="22" /></span>
+          <span class="flex-1 text-left text-sm font-bold leading-tight text-slate-400">{{ t('home.schoolProjects') }}</span>
+          <Icon name="info" :size="16" class="shrink-0 text-slate-300" />
+        </button>
       </section>
 
       <!-- Toolbar segmentata -->

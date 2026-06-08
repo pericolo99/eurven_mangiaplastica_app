@@ -160,6 +160,9 @@ const messages = {
       school: 'Scuola',
       section: 'Sezione',
       joinOk: 'Adesione registrata con successo.',
+      inactiveTitle: 'Progetti scuola non attivi',
+      inactiveText:
+        'I progetti per le scuole non sono ancora attivi nel tuo comune. Chiedi alla tua amministrazione comunale di aderire o di attivare progetti dedicati alle scuole.',
     },
     profile: {
       title: 'Il mio profilo',
@@ -327,6 +330,9 @@ const messages = {
       school: 'School',
       section: 'Section',
       joinOk: 'Participation registered successfully.',
+      inactiveTitle: 'School projects not active',
+      inactiveText:
+        'School projects are not active in your municipality yet. Ask your local administration to join or activate projects dedicated to schools.',
     },
     profile: {
       title: 'My profile',

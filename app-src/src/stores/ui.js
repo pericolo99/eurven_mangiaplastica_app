@@ -6,6 +6,7 @@ export const ui = reactive({
   toasts: [],
   loading: false,
   confirmState: null, // { message, resolve }
+  alertState: null, // { title, message }
 
   toast(message, type = 'info', timeout = 2600) {
     const id = ++_id
@@ -38,6 +39,19 @@ export const ui = reactive({
     if (this.confirmState) {
       this.confirmState.resolve(value)
       this.confirmState = null
+    }
+  },
+
+  /** Mostra un avviso informativo con un solo pulsante. */
+  alert(message, title = '') {
+    return new Promise((resolve) => {
+      this.alertState = { message, title, resolve }
+    })
+  },
+  _closeAlert() {
+    if (this.alertState) {
+      this.alertState.resolve(true)
+      this.alertState = null
     }
   },
 })
