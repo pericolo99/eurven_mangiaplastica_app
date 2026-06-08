@@ -91,10 +91,10 @@ onMounted(load)
           </p>
         </div>
         <div class="space-y-3 px-5 py-4">
-          <div v-if="p.descrizione" class="prose-mini text-sm text-ink" v-html="p.descrizione"></div>
+          <p v-if="p.descrizione" class="whitespace-pre-line text-sm leading-relaxed text-ink">{{ p.descrizione }}</p>
           <template v-if="p.istruzioni">
             <p class="text-xs font-bold uppercase tracking-wide text-muted">{{ t('projects.instructions') }}</p>
-            <div class="prose-mini text-sm text-ink" v-html="p.istruzioni"></div>
+            <p class="whitespace-pre-line text-sm leading-relaxed text-ink">{{ p.istruzioni }}</p>
           </template>
           <RouterLink :to="{ name: 'project', params: { codice: p.codice_progetto } }" class="btn-primary btn-block">
             {{ t('projects.join') }}
@@ -108,9 +108,3 @@ onMounted(load)
     </div>
   </AppShell>
 </template>
-
-<style scoped>
-.prose-mini :deep(a) { color: #0090c9; font-weight: 600; }
-.prose-mini :deep(p) { margin: 0 0 0.4rem; }
-.prose-mini :deep(ul) { list-style: disc; padding-left: 1.1rem; }
-</style>
