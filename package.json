@@ -1,4 +1,18 @@
 {
+  "name": "mangiaplastica-cordova",
+  "version": "1.2.1",
+  "description": "Shell Cordova dell'app Mangiaplastica (UI in app-src/, build in www/)",
+  "scripts": {
+    "setup": "npm --prefix app-src install",
+    "ui": "npm --prefix app-src run build",
+    "android:prepare": "npm run ui && cordova prepare android",
+    "android": "npm run ui && cordova run android",
+    "android:build": "npm run ui && cordova build android",
+    "android:release": "npm run ui && cordova build android --release -- --packageType=bundle",
+    "ios:prepare": "npm run ui && cordova prepare ios",
+    "ios": "npm run ui && cordova run ios",
+    "ios:build": "npm run ui && cordova build ios"
+  },
   "dependencies": {
     "cordova": "^6.1.1",
     "replace-in-file": "^7.0.2"

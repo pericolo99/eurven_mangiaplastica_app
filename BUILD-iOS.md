@@ -17,6 +17,15 @@ Dati del progetto:
 - Un **Apple ID** (per il simulatore basta quello gratuito; per dispositivo fisico /
   App Store serve un account **Apple Developer**)
 
+## Scorciatoie npm (dalla cartella `App/`)
+Gli script fanno automaticamente **build UI + comando Cordova**:
+```bash
+npm run setup        # una volta: installa le dipendenze della UI (app-src)
+npm run ios          # build UI + cordova run ios (simulatore)
+npm run ios:prepare  # build UI + cordova prepare ios (poi apri in Xcode)
+```
+I passi manuali qui sotto restano validi per capire cosa succede / firmare in Xcode.
+
 ## 2. Build della UI (Vue → www)
 Da fare **prima** di ogni build Cordova, così `www/` è aggiornato:
 ```bash

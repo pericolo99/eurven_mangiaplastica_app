@@ -34,6 +34,16 @@ Dati del progetto:
 
 > Verifica l'ambiente con: `cordova requirements android`
 
+## Scorciatoie npm (dalla cartella `App/`)
+Gli script fanno automaticamente **build UI + comando Cordova**:
+```bash
+npm run setup            # una volta: installa le dipendenze della UI (app-src)
+npm run android          # build UI + cordova run android (device/emulatore)
+npm run android:build    # build UI + APK di debug
+npm run android:release  # build UI + AAB firmato per il Play Store
+```
+I passi manuali qui sotto restano validi per capire cosa succede / fare debug.
+
 ## 2. Build della UI (Vue → www)
 Da fare **prima** di ogni build Cordova:
 ```bash
