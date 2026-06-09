@@ -12,5 +12,10 @@ npm-debug.log*
 .DS_Store
 Thumbs.db
 
+# Firma release Android (segreti — non committare)
+build.json
+*.keystore
+*.jks
+
 # Output build della nuova UI Vue (verra' rigenerato in www/)
 # www/ resta versionato perche' e' il bundle servito da Cordova
