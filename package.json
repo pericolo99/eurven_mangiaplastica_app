@@ -28,8 +28,8 @@
     "cordova-plugin-inappbrowser": "^4.0.0",
     "cordova-plugin-screen-orientation": "~3.0.2",
     "cordova-plugin-wkwebview-file-xhr": "^3.1.0",
-    "phonegap-plugin-barcodescanner": "^8.1.0",
-    "uk.co.workingedge.phonegap.plugin.launchnavigator": "~5.0.4"
+    "uk.co.workingedge.phonegap.plugin.launchnavigator": "~5.0.4",
+    "@red-mobile/cordova-plugin-barcodescanner": "^9.1.0"
   },
   "cordova": {
     "plugins": {
@@ -40,11 +40,9 @@
       },
       "cordova-plugin-wkwebview-file-xhr": {},
       "cordova-plugin-app-version": {},
-      "phonegap-plugin-barcodescanner": {
-        "ANDROID_SUPPORT_V4_VERSION": "27.+"
-      },
       "cordova-plugin-geolocation": {},
-      "cordova-plugin-inappbrowser": {}
+      "cordova-plugin-inappbrowser": {},
+      "@red-mobile/cordova-plugin-barcodescanner": {}
     },
     "platforms": [
       "ios",
