@@ -84,16 +84,11 @@
         <hook src="scripts/browser_fix.js" type="before_prepare" />
     </platform>
     <platform name="ios">
-        <preference name="CordovaWebViewEngine" value="CDVWKWebViewEngine" />
-        <preference name="WKWebViewOnly" value="true" />
-        <feature name="CDVWKWebViewEngine">
-            <param name="ios-package" value="CDVWKWebViewEngine" />
-        </feature>
-        <!--
+        <!-- cordova-ios 7 usa WKWebView nativamente (schema app://localhost):
+             niente plugin/preference CDVWKWebViewEngine. -->
         <edit-config file="*-Info.plist" mode="merge" platform="ios" target="NSCameraUsageDescription">
             <string>Per eseguire la scansione di codici a barre su tessera.</string>
         </edit-config>
-        -->
         <edit-config file="*-Info.plist" mode="merge" platform="ios" target="NSLocationWhenInUseUsageDescription">
             <string>Per indentificare le nostre macchine in prossimità della tua posizione.</string>
         </edit-config>

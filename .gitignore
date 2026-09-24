@@ -19,3 +19,13 @@ build.json
 
 # Output build della nuova UI Vue (verra' rigenerato in www/)
 # www/ resta versionato perche' e' il bundle servito da Cordova
+
+# iOS / Xcode (la piattaforma e' rigenerata da cordova in platforms/ios)
+xcuserdata/
+*.xcuserstate
+DerivedData/
+*.ipa
+*.dSYM.zip
+*.mobileprovision
+*.p12
+*.cer

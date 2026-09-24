@@ -12,10 +12,29 @@ Dati del progetto:
 ## 1. Prerequisiti (sul Mac)
 - **macOS** recente + **Xcode** (da App Store) e Command Line Tools:
   `xcode-select --install`
-- **Node 18+** e **Cordova CLI**: `npm i -g cordova`
+- **Node 18+** (vedi `.nvmrc`); la Cordova CLI 12 è già tra le dipendenze del progetto
 - **CocoaPods**: `sudo gem install cocoapods` (oppure `brew install cocoapods`)
 - Un **Apple ID** (per il simulatore basta quello gratuito; per dispositivo fisico /
   App Store serve un account **Apple Developer**)
+
+## Setup rapido sulla VM macOS (clone pulito)
+`platforms/`, `plugins/` e `node_modules/` **non** sono nel repo: vengono rigenerati
+da `package.json` (sezione `cordova`) e `config.xml`.
+```bash
+git clone git@github.com:pericolo99/eurven_mangiaplastica_app.git
+cd eurven_mangiaplastica_app
+nvm use              # opzionale: usa la Node di .nvmrc
+npm run ios:setup    # controlla prerequisiti, npm ci, build UI, platform add + prepare ios
+npm run ios:open     # apre il .xcworkspace in Xcode → imposta il Team e premi Run
+```
+Per aggiornare dopo modifiche fatte su Linux: `git pull && npm run ios:prepare`.
+
+Note VM:
+- Usa la CLI Cordova **locale** del progetto (`npx cordova …` o gli script npm):
+  è la 12, quella richiesta da `cordova-ios@7`. Una Cordova globale vecchia non va.
+- Il **simulatore** funziona in VM (lento ma ok). Per un **iPhone fisico** serve il
+  passthrough USB della VM; in alternativa distribuisci via TestFlight (passo 6).
+- Assegna alla VM almeno 8 GB di RAM e ~60 GB di disco (Xcode + simulatori).
 
 ## Scorciatoie npm (dalla cartella `App/`)
 Gli script fanno automaticamente **build UI + comando Cordova**:
@@ -23,6 +42,8 @@ Gli script fanno automaticamente **build UI + comando Cordova**:
 npm run setup        # una volta: installa le dipendenze della UI (app-src)
 npm run ios          # build UI + cordova run ios (simulatore)
 npm run ios:prepare  # build UI + cordova prepare ios (poi apri in Xcode)
+npm run ios:open     # apre platforms/ios/Mangiaplastica.xcworkspace
+npm run ios:release  # build release per device (firma dal Team impostato in Xcode)
 ```
 I passi manuali qui sotto restano validi per capire cosa succede / firmare in Xcode.
 
@@ -38,9 +59,9 @@ npm run build        # genera ../www
 Dalla cartella `App/`:
 ```bash
 # se la piattaforma dà problemi, rigenerala pulita:
-# cordova platform rm ios && cordova platform add ios@7
+# npx cordova platform rm ios && npx cordova platform add ios
 
-cordova prepare ios   # copia www + plugin ed esegue 'pod install'
+npx cordova prepare ios   # copia www + plugin ed esegue 'pod install'
 ```
 
 ## 4. Aprire in Xcode e firmare
