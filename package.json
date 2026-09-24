@@ -6,31 +6,30 @@
     "setup": "npm --prefix app-src install",
     "ui": "npm --prefix app-src run build",
     "android:prepare": "npm run ui && cordova prepare android",
-    "android": "npm run ui && cordova run android",
-    "android:build": "npm run ui && cordova build android",
-    "android:release": "npm run ui && cordova build android --release -- --packageType=bundle",
+    "android": "npm run android:prepare && cordova run android",
+    "android:build": "npm run android:prepare && cordova build android",
+    "android:release": "npm run android:prepare && cordova build android --release -- --packageType=bundle",
     "ios:prepare": "npm run ui && cordova prepare ios",
-    "ios": "npm run ui && cordova run ios",
-    "ios:build": "npm run ui && cordova build ios",
+    "ios": "npm run ios:prepare && cordova run ios",
+    "ios:build": "npm run ios:prepare && cordova build ios",
     "ios:setup": "bash scripts/ios-setup.sh",
     "ios:open": "open platforms/ios/Mangiaplastica.xcworkspace",
-    "ios:release": "npm run ui && cordova build ios --release --device"
+    "ios:release": "npm run ios:prepare && cordova build ios --release --device"
   },
   "dependencies": {
     "cordova": "^12.0.0",
     "replace-in-file": "^7.0.2"
   },
   "devDependencies": {
-    "barcode-scanner": "^0.1.1",
     "cordova-android": "^14.0.1",
     "cordova-ios": "^7.1.0",
     "cordova-plugin-app-version": "^0.1.14",
+    "cordova-plugin-geolocation": "^4.0.2",
+    "cordova-plugin-inappbrowser": "^4.0.0",
     "cordova-plugin-screen-orientation": "~3.0.2",
     "cordova-plugin-wkwebview-file-xhr": "^3.1.0",
     "phonegap-plugin-barcodescanner": "^8.1.0",
-    "uk.co.workingedge.phonegap.plugin.launchnavigator": "~5.0.4",
-    "cordova-plugin-geolocation": "^4.0.2",
-    "cordova-plugin-inappbrowser": "^4.0.0"
+    "uk.co.workingedge.phonegap.plugin.launchnavigator": "~5.0.4"
   },
   "cordova": {
     "plugins": {
