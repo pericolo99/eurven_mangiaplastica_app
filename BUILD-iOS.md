@@ -20,6 +20,18 @@ Dati del progetto:
 ## Setup rapido sulla VM macOS (clone pulito)
 `platforms/`, `plugins/` e `node_modules/` **non** sono nel repo: vengono rigenerati
 da `package.json` (sezione `cordova`) e `config.xml`.
+
+Accesso a GitHub dalla VM (una volta sola) — il clone usa SSH:
+```bash
+xcode-select --install                             # porta anche git
+brew install node cocoapods                        # Xcode invece dall'App Store
+ssh-keygen -t ed25519 -C "pericolo99@gmail.com"    # Invio alle domande
+pbcopy < ~/.ssh/id_ed25519.pub                     # copia la chiave pubblica
+```
+Incollala su GitHub in **Settings → SSH and GPG keys → New SSH key**, poi verifica con
+`ssh -T git@github.com` (risponde "Hi pericolo99!"). In alternativa senza SSH:
+`brew install gh && gh auth login && gh repo clone pericolo99/eurven_mangiaplastica_app`.
+
 ```bash
 git clone git@github.com:pericolo99/eurven_mangiaplastica_app.git
 cd eurven_mangiaplastica_app
