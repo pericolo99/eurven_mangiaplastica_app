@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted, shallowRef } from 'vue'
+import { ref, computed, onMounted, shallowRef } from 'vue'
 import AppShell from '@/components/AppShell.vue'
 import Icon from '@/components/Icon.vue'
 import EmptyState from '@/components/EmptyState.vue'
@@ -10,7 +10,17 @@ import { EP } from '@/api/endpoints'
 import { ui } from '@/stores/ui'
 import { getPosition, navigateTo, loadGoogleMaps } from '@/native'
 
-const machines = ref([])
+// data.macchine = { comune: [...], vicine: [...] }: macchine del comune
+// dell'utente e altre macchine (per distanza se c'e' la posizione).
+const comune = ref([])
+const vicine = ref([])
+const machines = computed(() => [...comune.value, ...vicine.value])
+const sections = computed(() =>
+  [
+    { key: 'comune', title: t('machines.inComune'), items: comune.value },
+    { key: 'vicine', title: t(myPos.value ? 'machines.nearby' : 'machines.others'), items: vicine.value },
+  ].filter((s) => s.items.length)
+)
 const loading = ref(true)
 const mapEl = ref(null)
 const mapReady = ref(false)
@@ -25,7 +35,10 @@ async function load() {
     : { noposition: 1 }
   try {
     const res = await api(EP.macchine, body)
-    machines.value = res?.data?.macchine || []
+    const list = res?.data?.macchine
+    // Tollera la vecchia risposta a lista unica (backend non ancora aggiornato).
+    comune.value = Array.isArray(list) ? [] : list?.comune || []
+    vicine.value = Array.isArray(list) ? list : list?.vicine || []
     initMap()
   } catch (e) {
     ui.error(e.message)
@@ -107,34 +120,39 @@ onMounted(load)
       <Skeleton :rows="4" variant="list" />
     </template>
 
-    <ul v-else-if="machines.length" class="space-y-3">
-      <li v-for="(m, i) in machines" :key="m.codice_macchina || i" class="card flex items-center gap-3 p-4">
-        <span class="grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-accent-50 text-accent-600">
-          <Icon name="pin" :size="22" />
-        </span>
-        <div class="min-w-0 flex-1">
-          <p class="truncate font-bold text-ink">{{ m.descrizione || m.nome }}</p>
-          <p class="truncate text-xs text-muted">
-            {{ m.comune }}<span v-if="m.distance"> · {{ m.distance }}</span>
-          </p>
-          <span
-            class="chip mt-1"
-            :class="m.online_sync ? 'bg-eco-500/10 text-eco-600' : 'bg-slate-100 text-slate-400'"
-          >
-            <span class="h-1.5 w-1.5 rounded-full" :class="m.online_sync ? 'bg-eco-500' : 'bg-slate-400'"></span>
-            {{ m.online_sync ? t('machines.online') : t('machines.offline') }}
-          </span>
-        </div>
-        <button
-          v-if="m.latitudine"
-          class="grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-brand-gradient text-white active:scale-90"
-          @click="navigate(m)"
-          :aria-label="t('machines.navigate')"
-        >
-          <Icon name="navigate" :size="20" />
-        </button>
-      </li>
-    </ul>
+    <template v-else-if="machines.length">
+      <section v-for="sec in sections" :key="sec.key" class="mb-5 last:mb-0">
+        <h2 class="mb-2 px-1 text-xs font-bold uppercase tracking-wide text-muted">{{ sec.title }}</h2>
+        <ul class="space-y-3">
+          <li v-for="(m, i) in sec.items" :key="m.codice_macchina || i" class="card flex items-center gap-3 p-4">
+            <span class="grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-accent-50 text-accent-600">
+              <Icon name="pin" :size="22" />
+            </span>
+            <div class="min-w-0 flex-1">
+              <p class="truncate font-bold text-ink">{{ m.descrizione || m.nome }}</p>
+              <p class="truncate text-xs text-muted">
+                {{ m.comune }}<span v-if="m.distance"> · {{ m.distance }}</span>
+              </p>
+              <span
+                class="chip mt-1"
+                :class="m.online_sync ? 'bg-eco-500/10 text-eco-600' : 'bg-slate-100 text-slate-400'"
+              >
+                <span class="h-1.5 w-1.5 rounded-full" :class="m.online_sync ? 'bg-eco-500' : 'bg-slate-400'"></span>
+                {{ m.online_sync ? t('machines.online') : t('machines.offline') }}
+              </span>
+            </div>
+            <button
+              v-if="m.latitudine"
+              class="grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-brand-gradient text-white active:scale-90"
+              @click="navigate(m)"
+              :aria-label="t('machines.navigate')"
+            >
+              <Icon name="navigate" :size="20" />
+            </button>
+          </li>
+        </ul>
+      </section>
+    </template>
 
     <div v-else class="card">
       <EmptyState icon="pin" :title="t('machines.empty')" :subtitle="t('machines.noPosition')" />

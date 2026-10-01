@@ -142,6 +142,9 @@ const messages = {
       offline: 'Offline',
       noPosition: 'Non riusciamo a riconoscere la tua posizione',
       navConfirm: 'Vuoi aprire il navigatore?',
+      inComune: 'Nel tuo comune',
+      nearby: 'Altre macchine vicine',
+      others: 'Altre macchine',
     },
     projects: {
       title: 'Progetti',
@@ -313,6 +316,9 @@ const messages = {
       offline: 'Offline',
       noPosition: 'We cannot detect your location',
       navConfirm: 'Open the navigator?',
+      inComune: 'In your municipality',
+      nearby: 'Other nearby machines',
+      others: 'Other machines',
     },
     projects: {
       title: 'Projects',

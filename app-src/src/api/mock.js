@@ -160,7 +160,11 @@ export async function mockApi(endpoint, data = {}) {
       return tessereResponse()
 
     case 'macchine':
-      return { hasError: false, keys: ['macchine'], data: { macchine } }
+      return {
+        hasError: false,
+        keys: ['macchine'],
+        data: { macchine: { comune: macchine.slice(0, 2), vicine: macchine.slice(2) } },
+      }
 
     case 'storico':
       return { hasError: false, data: { storico } }

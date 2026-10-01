@@ -84,8 +84,12 @@
         <hook src="scripts/browser_fix.js" type="before_prepare" />
     </platform>
     <platform name="ios">
-        <!-- cordova-ios 7 usa WKWebView nativamente (schema app://localhost):
-             niente plugin/preference CDVWKWebViewEngine. -->
+        <!-- cordova-ios 7 usa WKWebView nativamente: niente plugin/preference
+             CDVWKWebViewEngine. Lo schema app://localhost NON e' il default:
+             senza queste preference l'app viene servita da file:// (origin null)
+             e WebKit blocca gli script type="module" crossorigin generati da Vite. -->
+        <preference name="scheme" value="app" />
+        <preference name="hostname" value="localhost" />
         <edit-config file="*-Info.plist" mode="merge" platform="ios" target="NSCameraUsageDescription">
             <string>Per eseguire la scansione di codici a barre su tessera.</string>
         </edit-config>
