@@ -17,9 +17,9 @@ import { session } from '@/stores/session'
             v-if="session.code?.image"
             :src="session.code.image"
             alt="barcode"
-            class="h-64 w-full object-fill [image-rendering:pixelated]"
+            class="h-40 w-full object-fill [image-rendering:pixelated]"
           />
-          <div v-else class="grid h-64 w-full place-items-center text-slate-300">
+          <div v-else class="grid h-40 w-full place-items-center text-slate-300">
             <Icon name="barcode" :size="64" />
           </div>
         </div>
