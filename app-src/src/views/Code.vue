@@ -9,15 +9,17 @@ import { session } from '@/stores/session'
   <AppShell :title="t('code.title')" back>
     <div class="flex min-h-[72vh] flex-col">
       <!-- Barcode vicino al bordo alto (comodo da scansionare) -->
-      <div class="w-full rounded-3xl bg-white p-5 shadow-card animate-pop-in">
-        <div class="flex justify-center rounded-2xl bg-brand-soft p-5">
+      <div class="w-full overflow-hidden rounded-3xl bg-white pb-5 shadow-card animate-pop-in">
+        <!-- Il PNG dal server e' molto basso (Code128, 30px): lo si stira in
+             altezza (solo barre, nessun testo) mantenendo i bordi netti. -->
+        <div class="flex justify-center bg-brand-soft px-6 pb-5">
           <img
             v-if="session.code?.image"
             :src="session.code.image"
             alt="barcode"
-            class="h-44 w-full object-contain"
+            class="h-64 w-full object-fill [image-rendering:pixelated]"
           />
-          <div v-else class="grid h-44 w-full place-items-center text-slate-300">
+          <div v-else class="grid h-64 w-full place-items-center text-slate-300">
             <Icon name="barcode" :size="64" />
           </div>
         </div>
