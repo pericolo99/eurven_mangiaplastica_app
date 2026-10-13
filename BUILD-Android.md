@@ -5,12 +5,12 @@ dalla shell Cordova. Android si compila su **Linux, macOS o Windows**.
 
 Dati del progetto:
 - Bundle ID: `com.eurven.greenpoints`
-- Versione `1.2.1` · `android-versionCode` `23`
-- Piattaforma: `cordova-android@14` · minSdk **21** · targetSdk **35** (Android 15)
+- Versione `1.2.3` · `android-versionCode` `25`
+- Piattaforma: `cordova-android@15` · minSdk **21** · targetSdk **36** (Android 16)
 - Chiave Google Maps (launchnavigator) già configurata nel `config.xml`
 
 ## 1. Prerequisiti
-- **JDK 17** ⚠️ (cordova-android 14 lo richiede; la JDK 11 NON va bene)
+- **JDK 17** ⚠️ (cordova-android 15 lo richiede; la JDK 11 NON va bene)
   ```bash
   sudo apt install openjdk-17-jdk
   sudo update-alternatives --config java     # seleziona la 17
@@ -18,7 +18,7 @@ Dati del progetto:
   ```
 - **Android SDK** — il modo più semplice è installare **Android Studio**, che porta
   SDK, platform-tools ed emulatore. In alternativa solo le command-line tools.
-  Servono: **SDK Platform 35**, **Build-Tools**, **Platform-Tools**.
+  Servono: **SDK Platform 36**, **Build-Tools**, **Platform-Tools**.
 - Variabili d'ambiente (aggiungile a `~/.bashrc`):
   ```bash
   export ANDROID_HOME=$HOME/Android/Sdk
@@ -27,7 +27,7 @@ Dati del progetto:
   ```
 - Installa i pacchetti SDK e accetta le licenze:
   ```bash
-  sdkmanager "platform-tools" "platforms;android-35" "build-tools;35.0.0"
+  sdkmanager "platform-tools" "platforms;android-36" "build-tools;36.0.0"
   sdkmanager --licenses
   ```
 - **Node 18+** e **Cordova CLI**: `npm i -g cordova`

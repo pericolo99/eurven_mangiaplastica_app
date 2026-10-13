@@ -1,6 +1,6 @@
 {
   "name": "mangiaplastica-cordova",
-  "version": "1.2.1",
+  "version": "1.2.3",
   "description": "Shell Cordova dell'app Mangiaplastica (UI in app-src/, build in www/)",
   "scripts": {
     "setup": "npm --prefix app-src install",
@@ -21,15 +21,15 @@
     "replace-in-file": "^7.0.2"
   },
   "devDependencies": {
-    "cordova-android": "^14.0.1",
+    "@red-mobile/cordova-plugin-barcodescanner": "^9.1.0",
+    "cordova-android": "^15.1.0",
     "cordova-ios": "^7.1.0",
     "cordova-plugin-app-version": "^0.1.14",
     "cordova-plugin-geolocation": "^4.0.2",
     "cordova-plugin-inappbrowser": "^4.0.0",
     "cordova-plugin-screen-orientation": "~3.0.2",
     "cordova-plugin-wkwebview-file-xhr": "^3.1.0",
-    "uk.co.workingedge.phonegap.plugin.launchnavigator": "~5.0.4",
-    "@red-mobile/cordova-plugin-barcodescanner": "^9.1.0"
+    "uk.co.workingedge.phonegap.plugin.launchnavigator": "~5.0.4"
   },
   "cordova": {
     "plugins": {
