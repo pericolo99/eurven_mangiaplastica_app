@@ -1,10 +1,10 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget android-versionCode="25" id="com.eurven.greenpoints" ios-CFBundleVersion="25" version="1.2.3" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">&gt;
+<widget android-versionCode="26" id="com.eurven.greenpoints" ios-CFBundleVersion="26" version="1.3.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">&gt;
         <name>Mangiaplastica</name>
     <description>
         Il borsellino elettronico di Eurven.
     </description>
-    <author email="developer@eurven.it" href="https://www.eurven.com">
+    <author email="info@eurven.com" href="https://www.eurven.com">
         Eurven Dev Team
     </author>
     <content src="index.html" />

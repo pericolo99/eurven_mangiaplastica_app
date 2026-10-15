@@ -5,7 +5,7 @@ dalla shell Cordova. iOS si compila **solo su macOS con Xcode** (non su Linux/Wi
 
 Dati del progetto:
 - Bundle ID: `com.eurven.greenpoints`
-- Nome: Mangiaplastica · versione `1.2.3` (build `25`)
+- Nome: Mangiaplastica · versione `1.3.0` (build `26`)
 - Piattaforma: `cordova-ios@7` (WKWebView) — già aggiunta
 - Permessi iOS (fotocamera/posizione): già predisposti in `config.xml`
 

@@ -5,7 +5,7 @@ import { t } from '@/i18n'
 import { openExternal } from '@/native'
 
 const contacts = [
-  { icon: 'mail', label: 'developer@eurven.it', action: () => openExternal('mailto:developer@eurven.it') },
+  { icon: 'mail', label: 'info@eurven.com', action: () => openExternal('mailto:info@eurven.com') },
   { icon: 'globe', label: 'www.eurven.com', action: () => openExternal('https://www.eurven.com') },
 ]
 </script>

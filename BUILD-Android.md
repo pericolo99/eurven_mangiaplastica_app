@@ -5,7 +5,7 @@ dalla shell Cordova. Android si compila su **Linux, macOS o Windows**.
 
 Dati del progetto:
 - Bundle ID: `com.eurven.greenpoints`
-- Versione `1.2.3` · `android-versionCode` `25`
+- Versione `1.3.0` · `android-versionCode` `26`
 - Piattaforma: `cordova-android@15` · minSdk **21** · targetSdk **36** (Android 16)
 - Chiave Google Maps (launchnavigator) già configurata nel `config.xml`
 

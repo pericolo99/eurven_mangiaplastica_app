@@ -32,8 +32,8 @@ onMounted(async () => (version.value = await getAppVersion()))
       <button class="btn-soft btn-block" @click="openExternal('https://www.eurven.com')">
         <Icon name="globe" :size="18" /> www.eurven.com
       </button>
-      <button class="btn-soft btn-block" @click="openExternal('mailto:developer@eurven.it')">
-        <Icon name="mail" :size="18" /> developer@eurven.it
+      <button class="btn-soft btn-block" @click="openExternal('mailto:info@eurven.com')">
+        <Icon name="mail" :size="18" /> info@eurven.com
       </button>
     </div>
   </AppShell>
